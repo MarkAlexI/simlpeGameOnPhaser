@@ -1,0 +1,13 @@
+{
+  "name": "simlpeGameOnPhaser",
+  "version": "1.0.0",
+  "description": "Work with Phaser.js",
+  "main": "js/game.js",
+  "keywords": [
+    "phaser3",
+    "game",
+    "js"
+  ],
+  "author": "MarkAlexI",
+  "license": "MIT"
+}
