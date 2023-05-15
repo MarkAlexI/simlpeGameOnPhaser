@@ -18,8 +18,10 @@ gameScene.create = function() {
   bg.setOrigin(0, 0);
   
   this.player = this.add.sprite(40, this.sys.game.config.height/2, 'player');
+  this.player.setScale(.5);
   
-  this.player.setScale(.4);
+  this.treasure = this.add.sprite(this.sys.game.config.width - 80, this.sys.game.config.height/2, 'treasure');
+  this.treasure.setScale(.8);
 };
 
 gameScene.update = function() {
