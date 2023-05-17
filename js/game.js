@@ -40,9 +40,15 @@ gameScene.create = function() {
   Phaser.Actions.Call(this.enemies.getChildren(), function(enemy) {
     enemy.speed = Math.random() * 2 + 1;
   }, this);
+  
+  this.isPlayerAlive = true;
+  
+  this.cameras.main.resetFX();
 };
 
 gameScene.update = function() {
+  if (!this.isPlayerAlive) return;
+  
   if  (Phaser.Geom.Intersects.RectangleToRectangle(this.player.getBounds(), this.treasure.getBounds())) {
     this.gameOver();
   }
@@ -70,7 +76,13 @@ gameScene.update = function() {
 };
 
 gameScene.gameOver = function() {
+  this.isPlayerAlive = false;
+  
   this.cameras.main.shake(500);
+  
+  this.time.delayedCall(250, function() {
+    this.cameras.main.fade(250);
+  }, [], this);
   
   this.time.delayedCall(500, function() {
     this.scene.restart();
