@@ -1,6 +1,17 @@
 'use strict';
 
+let loadScene = new Phaser.Scene('Load');
 let gameScene = new Phaser.Scene('Game');
+
+loadScene.create = function() {
+  this.add.text(100, this.sys.game.config.height/2, 'Loading...', { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif', fontSize: '48px' });
+};
+
+loadScene.update = function() {
+  this.time.delayedCall(5000, function() {
+    this.scene.start('Game');
+  }, [], this);
+};
 
 gameScene.init = function() {
   this.playerSpeed = 1;
@@ -93,7 +104,7 @@ let config = {
   type: Phaser.AUTO,
   width: 640,
   height: 360,
-  scene: gameScene
+  scene: [loadScene, gameScene]
 };
 
 let game = new Phaser.Game(config);
