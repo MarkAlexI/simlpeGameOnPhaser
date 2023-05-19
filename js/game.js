@@ -55,6 +55,20 @@ gameScene.create = function() {
   this.isPlayerAlive = true;
   
   this.cameras.main.resetFX();
+  
+  this.timeInSeconds = 30;
+
+  this.timeText = this.add.text(230, 30, "0", {
+    font: '30px Arial',
+    fill: '#FFFFFF',
+    align: 'center'
+  });
+  this.timeText.scrollFactorX = 0;
+  this.timedEvent = this.time.delayedCall(this.timeInSeconds * 1000, this.onEvent, [], this);
+};
+
+gameScene.onEvent = function() {
+  this.gameOver();
 };
 
 gameScene.update = function() {
@@ -84,6 +98,9 @@ gameScene.update = function() {
       break;
     }
   }
+  
+  const elapsedTime = this.timeInSeconds - this.timeInSeconds * this.timedEvent.getProgress();
+  this.timeText.setText(`Time: ${elapsedTime.toString().substr(0, elapsedTime < 10 ? 3 : 2)}`);
 };
 
 gameScene.gameOver = function() {

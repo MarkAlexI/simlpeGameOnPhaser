@@ -1,6 +1,6 @@
 {
   "name": "simlpeGameOnPhaser",
-  "version": "1.4.1",
+  "version": "1.5.1",
   "description": "Work with Phaser.js",
   "main": "js/game.js",
   "keywords": [
